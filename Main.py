@@ -52,3 +52,36 @@ class SportsStore(tk.Tk):
         self.product_name.pack()
         self.product_price.pack()
         self.product_description.pack()
+
+        # Shopping cart frame
+        self.cart_label = ttk.Label(self.shopping_cart_frame, text="Shopping Cart")
+        self.cart_list = ttk.Treeview(self.shopping_cart_frame)
+        self.cart_list["columns"] = ("name", "price", "quantity")
+        self.cart_list.heading("name", text="Product Name")
+        self.cart_list.heading("price", text="Price")
+        self.cart_list.heading("quantity", text="Quantity")
+
+        self.cart_label.pack()
+        self.cart_list.pack()
+
+        # Checkout frame
+        self.checkout_button = ttk.Button(self.checkout_frame, text="Checkout")
+        self.checkout_button.pack()
+
+        # Event handlers
+        def on_product_selected(event):
+            selected_item = self.product_list.selection()[0]
+            product_id = int(self.product_list.item(selected_item)["values"][0])
+            selected_product = next((p for p in products if p["id"] == product_id), None)
+            self.update_product_details(selected_product)
+
+        def add_to_cart(self):
+            selected_item = self.product_list.selection()[0]
+            product_id = int(self.product_list.item(selected_item)["values"][0])
+            product = next((p for p in products if p["id"] == product_id), None)
+            self.shopping_cart.append(product)
+            self.update_cart()
+
+        def remove_from_cart(self, product_id):
+            self.shopping_cart = [p for p in self.shopping_cart if p["id"] != product_id]
+            self.update_cart()
