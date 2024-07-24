@@ -71,13 +71,13 @@ class SportsStore(tk.Tk):
         # Event handlers
         def on_product_selected(event):
             selected_item = self.product_list.selection()[0]
-            product_id = int(self.product_list.item(selected_item)["values"][0])
+            product_id = self.product_list.item(selected_item)["values"][0]
             selected_product = next((p for p in products if p["id"] == product_id), None)
             self.update_product_details(selected_product)
 
         def add_to_cart(self):
             selected_item = self.product_list.selection()[0]
-            product_id = int(self.product_list.item(selected_item)["values"][0])
+            product_id = self.product_list.item(selected_item)["values"][0]
             product = next((p for p in products if p["id"] == product_id), None)
             self.shopping_cart.append(product)
             self.update_cart()
@@ -85,3 +85,20 @@ class SportsStore(tk.Tk):
         def remove_from_cart(self, product_id):
             self.shopping_cart = [p for p in self.shopping_cart if p["id"] != product_id]
             self.update_cart()
+
+        def checkout():
+            # Implement checkout logic
+            print("Checkout initiated")
+
+        self.product_list.bind("<<TreeviewSelect>>", on_product_selected)
+
+    def update_product_details(self, product):
+        # Update product details labels
+        pass
+
+    def update_cart(self):
+        # Update shopping cart display
+        pass
+
+store = SportsStore()
+store.mainloop()
