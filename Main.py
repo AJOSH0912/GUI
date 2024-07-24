@@ -21,3 +21,30 @@ class SportsStore(tk.Tk):
     def remove_from_cart(self, product_id):
         self.shopping_cart = [p for p in self.shopping_cart if p["id"] != product_id]
         # Update shopping cart display
+
+class SportsStore(tk.Tk):
+    # ... (rest of the code)
+
+    def checkout(self):
+        total_price = sum(p["price"] for p in self.shopping_cart)
+        # Display order summary
+        # Process payment (integrate with payment gateway)
+        # Clear shopping cart
+
+class SportsStore(tk.Tk):
+    # ... (rest of the code)
+
+    def search(self, query):
+        # Filter products based on query
+        search_results = [p for p in self.products if query.lower() in p["name"].lower()]
+        # Update product list display
+
+class SportsStore(tk.Tk):
+    # ... (rest of the code)
+
+    def login(self, username, password):
+        # Authenticate user
+        # Store user information (session or database)
+
+        def register(self, username, password, email):
+        # Create new user account
